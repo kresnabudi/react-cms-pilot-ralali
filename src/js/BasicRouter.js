@@ -2,8 +2,11 @@ import React from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect,
+  withRouter
 } from 'react-router-dom'
+import PrivateRoute 	from "./helper/PrivateRoute";
 
 import Layout 				from "./pages/layout/Layout";
 import Dashboard 			from "./pages/dashboard/Dashboard";
@@ -15,29 +18,35 @@ import Settlement 			from "./pages/order/Settlement";
 import SettlementLog		from "./pages/order/SettlementLog";
 import OfflineOrder			from "./pages/offline_order/OfflineOrder";
 import UploadOfflineOrder	from "./pages/offline_order/UploadOfflineOrder";
+
+// static page
 import NotFound				from "./pages/NotFound";
+import Login				from "./pages/Login";
+import Logout				from "./pages/Logout";
 
 
 export default class BasicRouter extends React.Component {
 	render() {
 	  	return (
-			    <Router>
-	  				<Layout >
+		    <Router>
+  				<Layout >
 					<Switch>
-						<Route exact path='/' 				component={Dashboard}/>
-						<Route path='/dashboard' 			component={Dashboard}/>
-						<Route path='/seller/all' 			component={AllSeller}/>
-						<Route path='/seller/super' 		component={SuperSeller}/>
-						<Route path='/buyer' 				component={Buyer}/>
-						<Route path='/order/all' 			component={AllOrder}/>
-						<Route path='/order/settlement' 	component={Settlement}/>
-						<Route path='/order/settlementlog' 	component={SettlementLog}/>
-						<Route path='/offline-order/all' 	component={OfflineOrder}/>
-						<Route path='/offline-order/upload' component={UploadOfflineOrder}/>
-						<Route component={NotFound}/>
+						<Route exact path='/login' 					component={Login}/>
+						<Route exact path='/logout' 				component={Logout}/>
+						<PrivateRoute exact path='/' 				component={Dashboard}/>
+						<PrivateRoute path='/dashboard' 			component={Dashboard}/>
+						<PrivateRoute path='/seller/all' 			component={AllSeller}/>
+						<PrivateRoute path='/seller/super' 			component={SuperSeller}/>
+						<PrivateRoute path='/buyer' 				component={Buyer}/>
+						<PrivateRoute path='/order/all' 			component={AllOrder}/>
+						<PrivateRoute path='/order/settlement' 		component={Settlement}/>
+						<PrivateRoute path='/order/settlementlog' 	component={SettlementLog}/>
+						<PrivateRoute path='/offline-order/all' 	component={OfflineOrder}/>
+						<PrivateRoute path='/offline-order/upload' 	component={UploadOfflineOrder}/>
+						<PrivateRoute component={NotFound}/>
 					</Switch>
-		    		</Layout >
-			    </Router>
+	    		</Layout >
+		    </Router>
 	  	);
   	}
 };

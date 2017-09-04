@@ -1,9 +1,11 @@
 import { combineReducers } from "redux"
 
 import countAllOrder from "./countAllOrderReducer"
-import generic from "./genericReducer"
+import genericReducer from "./genericReducer"
+import authReducer from "./authReducer"
 
 export default combineReducers({
   countAllOrder,
-  genericReducer
+  genericReducer,
+  authReducer
 })

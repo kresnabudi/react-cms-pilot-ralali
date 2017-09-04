@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { NavLink, NavNavLink } from "react-router-dom"
 
 export default class SideBar extends React.Component {
 	constructor() {
@@ -24,10 +24,10 @@ export default class SideBar extends React.Component {
 					<div class="menubar-scroll-panel">
 						<ul id="main-menu" class="gui-controls">
 							<li>
-								<Link to="dashboard">
+								<NavLink to="dashboard">
 									<div class="gui-icon"><i class="md md-dashboard"></i></div>
 									<span class="title">Dashboard</span>
-								</Link>
+								</NavLink>
 							</li>
 							<li class="gui-folder">
 								<a>
@@ -36,22 +36,22 @@ export default class SideBar extends React.Component {
 								</a>
 								<ul>
 									<li>
-										<Link to="seller/all">
+										<NavLink to="seller/all">
 											<span class="title">All Seller</span>
-										</Link>
+										</NavLink>
 									</li>
 									<li>
-										<Link to="seller/super">
+										<NavLink to="seller/super">
 											<span class="title">Super Seller</span>
-										</Link>
+										</NavLink>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<Link to="buyer">
+								<NavLink to="buyer">
 									<div class="gui-icon"><i class="md md-accessibility"></i></div>
 									<span class="title">Buyer</span>
-								</Link>
+								</NavLink>
 							</li>
 							<li class="gui-folder">
 								<a>
@@ -60,19 +60,19 @@ export default class SideBar extends React.Component {
 								</a>
 								<ul>
 									<li>
-										<Link to="order/all">
+										<NavLink to="order/all">
 											<span class="title">All Order</span>
-										</Link>
+										</NavLink>
 									</li>
 									<li>
-										<Link to="order/settlement">
+										<NavLink to="order/settlement">
 											<span class="title">Settlement</span>
-										</Link>
+										</NavLink>
 									</li>
 									<li>
-										<Link to="order/settlementlog">
+										<NavLink to="order/settlementlog">
 											<span class="title">Settlement Log</span>
-										</Link>
+										</NavLink>
 									</li>
 								</ul>
 							</li>
@@ -83,14 +83,14 @@ export default class SideBar extends React.Component {
 								</a>
 								<ul>
 									<li>
-										<Link to="offline-order/all">
+										<NavLink to="offline-order/all">
 											<span class="title">Data</span>
-										</Link>
+										</NavLink>
 									</li>
 									<li>
-										<Link to="offline-order/upload">
+										<NavLink to="offline-order/upload">
 											<span class="title">Upload Excel</span>
-										</Link>
+										</NavLink>
 									</li>
 								</ul>
 							</li>

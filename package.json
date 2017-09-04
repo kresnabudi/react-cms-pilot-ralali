@@ -29,9 +29,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot --port 8081",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ralali Devteam",
-  "license": "ISC"
+  "license": "ISC",
+  "private": true
 }

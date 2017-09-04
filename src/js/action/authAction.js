@@ -11,8 +11,8 @@ export function login(jembut) {
   };
 
   let payload = {
-    "email": "ralali_marketplace@ralali.com",
-    "password": "r4l4l1"
+    "email": jembut.email,
+    "password": jembut.password
   }
 
   return function(dispatch) {
