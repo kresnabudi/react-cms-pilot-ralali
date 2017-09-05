@@ -1,10 +1,10 @@
 import React from "react";
 
-import CountAllOrderCard	from "../../components/dashboard/CountAllOrderCard";
+import CountAllOrder	from "../../components/dashboard/CountAllOrder";
 import CountAllProduct		from "../../components/dashboard/CountAllProduct";
 import CountAllSaleNetWorth	from "../../components/dashboard/CountAllSaleNetWorth";
 
-import CountCurrentSellerCard	from "../../components/dashboard/CountCurrentSellerCard";
+import CountCurrentSeller	from "../../components/dashboard/CountCurrentSeller";
 import CountApproveSeller		from "../../components/dashboard/CountApproveSeller";
 import CountRejectedSeller		from "../../components/dashboard/CountRejectedSeller";
 
@@ -34,14 +34,14 @@ export default class Dashboard extends React.Component {
 						</div>
 
 						<div class="row">
-							<div class="col-md-6 col-lg-4">
-								<CountAllOrderCard />
+							<div class="col-md-6 col-lg-4" id="CountAllOrder">
+								<CountAllOrder location={this.props.location}/>
 							</div>
 							<div class="col-md-6 col-lg-4">
-								<CountAllProduct />
+								<CountAllProduct location={this.props.location}/>
 							</div>
 							<div class="col-md-6 col-lg-4">
-								<CountAllSaleNetWorth />
+								<CountAllSaleNetWorth location={this.props.location}/>
 							</div>
 						</div>
 
@@ -81,26 +81,33 @@ export default class Dashboard extends React.Component {
 							</div>
 
 							<div class="col-md-3">
+								
 								<div class="col-md-12 col-sm-12">
-									<CountCurrentSellerCard />
-									<CountCurrentSellerCard />
-									<CountApproveSeller />
-									<CountRejectedSeller />
+									<CountCurrentSeller location={this.props.location} typecard="curentseller"/>
+								</div>
+								<div class="col-md-12 col-sm-12">
+									<CountCurrentSeller location={this.props.location} typecard="todayseller"/>
+								</div>
+								<div class="col-md-12 col-sm-12">
+									<CountApproveSeller location={this.props.location}/>
+								</div>
+								<div class="col-md-12 col-sm-12">
+									<CountRejectedSeller location={this.props.location}/>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
-								<CountAllItem />
+								<CountAllItem location={this.props.location}/>
 							</div>
 							<div class="col-md-3 col-sm-6">
-								<CountAllSeller />
+								<CountAllSeller location={this.props.location}/>
 							</div>
 							<div class="col-md-3 col-sm-6">
-								<CountAllCustomer />
+								<CountAllCustomer location={this.props.location}/>
 							</div>
 							<div class="col-md-3 col-sm-6">
-								<CountAllBrand />
+								<CountAllBrand location={this.props.location}/>
 							</div>
 						</div>
 					</div>

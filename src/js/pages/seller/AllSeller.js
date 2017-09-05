@@ -5,6 +5,7 @@ import SellerTable		from "../../components/seller/SellerTable";
 
 export default class AllSeller extends React.Component {
   render() {
+  	
     return (
     	<div id="content">
 			<section>

@@ -9,18 +9,15 @@ import Login from "../Login";
 
 export default class Layout extends React.Component {
 
-  	render() {
-  		console.log(location)
-	  	if(location.hash==='#/login'){
-  			return (<Login/>);
-  		}
-  		const contentData=(this.props.children!==undefined)?this.props.children:[]
-  		return (
-			<div>
-	      	<Header />
-				  <SideBar contenRender={contentData}/>
-			</div>
-	    );
-	    
-  	}
+	render() {
+  	if(location.hash==='#/login') return (<Login/>);
+		const contentData=(this.props.children!==undefined)?this.props.children:[]
+		return (
+  		<div>
+        	<Header />
+  			  <SideBar contenRender={contentData}/>
+  		</div>
+    );
+    
+	}
 }

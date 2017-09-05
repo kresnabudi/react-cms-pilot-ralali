@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux"
 import queryString from 'query-string'
 
-import { fetchDataSeller } from "../../action/sellerAction"
+import AuthorizedComponent from "../../util/AuthorizedComponent"
+import { fetchDataSeller } from "../../action/getAllSellerAction"
 
 @connect((store) => {
   return {
-    datatabel: store
+    datatabel: store.GetAllSeller
   };
 })
 export default class SellerTable extends React.Component {
@@ -14,8 +15,10 @@ export default class SellerTable extends React.Component {
 		super()
 		this.state = {
 			page: 1,
-			show_data : 10
+			show_data : 10,
+			count_data : 0
 		}
+		AuthorizedComponent.authComponent(this)
   	}
   	
   	componentWillMount(){
@@ -23,15 +26,73 @@ export default class SellerTable extends React.Component {
   		if(queryParam.page!==undefined) this.setState({page:queryParam.page})
   		if(queryParam.show_data!==undefined) this.setState({show_data:queryParam.show_data})
   		this.props.dispatch(fetchDataSeller(this.state))
+  		this.setState({count_data:this.props.datatabel.data.count_all})
   	}
 
-  	changePagination(){
-  		
+  	changeShowData(e){
+  		this.setState({show_data:e.target.value})
+  		this.props.dispatch(fetchDataSeller(this.state))
   	}
 
   	render() {
+  		const count_data = this.props.datatabel.data.count_all
+	  	const dataSeller = this.props.datatabel.data.list
+	  	let mappedSeller = <tr></tr>
+	  	if(dataSeller!=undefined){
+	  		
+	  		let no = 1
+	  		mappedSeller = dataSeller.map(seller => 
+
+		  		<tr key={seller.id}>
+					<td>#</td>
+					<td>
+						<strong>{seller.name}</strong>
+						<div class="clearfix opacity-90">
+							<span class="md-email"></span>&nbsp; <a href={"mailto:"+seller.email} target="_top">{seller.email}</a>
+						</div>
+						<div class="clearfix opacity-90">
+							<span class="md-warning text-warning"></span>&nbsp; Status - {seller.created_at}
+						</div>
+					</td>
+					<td>
+						<strong>Shop Name</strong>
+						<div class="clearfix opacity-90">
+							<span class="md-store"></span>&nbsp; Seller Address
+						</div>
+						<div class="clearfix opacity-90">
+							<span class="md-language"></span>&nbsp; Microsite Name
+						</div>
+					</td>
+					<td>
+						<strong></strong>
+						<div class="clearfix opacity-90">
+							<span class="md-phone"></span>&nbsp; Phone Number
+						</div>
+						<div class="clearfix opacity-90">
+							<span class="md-phone-iphone"></span>&nbsp; Celular Number
+						</div>
+					</td>
+					<td>Source : Web</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn ink-reaction btn-flat dropdown-toggle" data-toggle="dropdown">
+								Action <i class="fa fa-caret-down text-default-light"></i>
+							</button>
+							<ul class="dropdown-menu animation-expand" role="menu">
+								<li><a href="#">Follow Up</a></li>
+								<li><a href="#">View</a></li>
+								<li><a href="#">Edit</a></li>
+								<li class="divider"></li>
+								<li><a href="#"><i class="md-star-rate text-warning"></i>Upgrade Super Seller</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+
+		  	)
+	  	}
 	  	
-	  	console.log(this.state)
+	  	
 	    return (
 			<div class="col-lg-12">
 				<div class="panel-group" id="accordion6">
@@ -60,135 +121,7 @@ export default class SellerTable extends React.Component {
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<strong>Seller Name</strong>
-													<div class="clearfix opacity-90">
-														<span class="md-email"></span>&nbsp; <a href="mailto:email@mail.com" target="_top">email@mail.com</a>
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-warning text-warning"></span>&nbsp; Status - Join At 1 Aug 2017
-													</div>
-												</td>
-												<td>
-													<strong>Shop Name</strong>
-													<div class="clearfix opacity-90">
-														<span class="md-store"></span>&nbsp; Store Address
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-language"></span>&nbsp; Microsite Address
-													</div>
-												</td>
-												<td>
-													<strong></strong>
-													<div class="clearfix opacity-90">
-														<span class="md-phone"></span>&nbsp; Phone Number
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-phone-iphone"></span>&nbsp; Celular Number
-													</div>
-												</td>
-												<td>Source : Web</td>
-												<td>
-													<div class="btn-group">
-														<button type="button" class="btn ink-reaction btn-flat dropdown-toggle" data-toggle="dropdown">
-															Action <i class="fa fa-caret-down text-default-light"></i>
-														</button>
-														<ul class="dropdown-menu animation-expand" role="menu">
-															<li><a href="#">Follow Up</a></li>
-															<li><a href="#">View</a></li>
-															<li><a href="#">Edit</a></li>
-															<li class="divider"></li>
-															<li><a href="#"><i class="md-star-rate text-warning"></i>Upgrade Super Seller</a></li>
-														</ul>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-											</tr>
-											<tr>
-												<td>6</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-												<td>Table cell</td>
-											</tr>
-											<tr>
-												<td>7</td>
-												<td>
-													<strong>Seller Name</strong>
-													<div class="clearfix opacity-90">
-														<span class="md-email"></span>&nbsp; email@mail.com
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-warning text-warning"></span>&nbsp; Status - Join At 1 Aug 2017
-													</div>
-												</td>
-												<td>
-													<strong>Shop Name</strong>
-													<div class="clearfix opacity-90">
-														<span class="md-store"></span>&nbsp; Store Address
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-language"></span>&nbsp; Microsite Address
-													</div>
-												</td>
-												<td>
-													<div class="clearfix opacity-90">
-														<span class="md-phone"></span>&nbsp; Phone Number
-													</div>
-													<div class="clearfix opacity-90">
-														<span class="md-phone-iphone"></span>&nbsp; Celular Number
-													</div>
-												</td>
-												<td>Source : Web</td>
-												<td>
-													<div class="btn-group">
-														<button type="button" class="btn ink-reaction btn-flat dropdown-toggle" data-toggle="dropdown">
-															Action <i class="fa fa-caret-down text-default-light"></i>
-														</button>
-														<ul class="dropdown-menu animation-expand" role="menu">
-															<li><a href="#">Follow Up</a></li>
-															<li><a href="#">View</a></li>
-															<li><a href="#">Edit</a></li>
-															<li class="divider"></li>
-															<li><a href="#"><i class="md-star-rate text-warning"></i>Upgrade Super Seller</a></li>
-														</ul>
-													</div>
-												</td>
-											</tr>
+											{mappedSeller}
 										</tbody>
 									</table>
 								</div>
@@ -199,7 +132,7 @@ export default class SellerTable extends React.Component {
 						<div class="card-head style-primary-bright">
 							<div class="col-lg-12">
 								<div class="col-lg-4">
-									Showing : 1 - 10 Of 3141
+									Showing : {(this.state.page<=1)?this.state.page:(this.state.page*this.state.show_data)+1} - {(this.state.page*this.state.show_data)} Of {count_data}
 								</div>
 								<div class="col-lg-4">
 									<div class="btn-group">
@@ -214,7 +147,7 @@ export default class SellerTable extends React.Component {
 								</div>
 								<div class="col-lg-4">
 									<div class="tools">
-										<select id="paging" name="paging" class="form-control col-lg-2">
+										<select id="paging" name="paging" class="form-control col-lg-2" onChange={this.changeShowData.bind(this)}>
 											<option value="10">10</option>
 											<option value="25">20</option>
 											<option value="50">50</option>

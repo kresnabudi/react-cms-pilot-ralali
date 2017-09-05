@@ -3,7 +3,7 @@ import {
   Redirect
 } from 'react-router-dom'
 
-import Authenticator from "../helper/Authenticator"
+import Authenticator from "../util/Authenticator"
 
 const Logout = () => {
 	Authenticator.signout()

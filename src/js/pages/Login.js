@@ -5,7 +5,7 @@ import {
 import { connect } from "react-redux"
 
 import { login } from "../action/authAction"
-import Authenticator from "../helper/Authenticator"
+import Authenticator from "../util/Authenticator"
 
 @connect((store) => {
   return {

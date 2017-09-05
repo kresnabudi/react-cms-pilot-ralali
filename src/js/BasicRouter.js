@@ -6,7 +6,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
-import PrivateRoute 	from "./helper/PrivateRoute";
+import PrivateRoute 	from "./util/PrivateRoute";
 
 import Layout 				from "./pages/layout/Layout";
 import Dashboard 			from "./pages/dashboard/Dashboard";
@@ -27,6 +27,7 @@ import Logout				from "./pages/Logout";
 
 export default class BasicRouter extends React.Component {
 	render() {
+		// console.log('jembat',React)
 	  	return (
 		    <Router>
   				<Layout >
