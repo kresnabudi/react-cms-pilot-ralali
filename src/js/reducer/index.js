@@ -16,6 +16,7 @@ import CountAllCustomer from "./dashboard/CountAllCustomer"
 import CountAllBrand from "./dashboard/CountAllBrand"
 
 import GetAllSeller from "./seller/GetAllSeller"
+import GetAllStatusSeller from "./seller/GetAllStatusSeller"
 
 export default combineReducers({
 	CountOrder,
@@ -30,5 +31,6 @@ export default combineReducers({
 	CountAllCustomer,
 	CountAllBrand,
   	GetAllSeller,
+  	GetAllStatusSeller,
   	authReducer
 })
