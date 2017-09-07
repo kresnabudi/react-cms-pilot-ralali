@@ -28,8 +28,6 @@ export default class SellerTable extends React.Component {
   	
   	componentWillMount(){
   		let queryParam = queryString.parse(this.props.location.search)
-  		if(queryParam.page!==undefined) this.setState({page:queryParam.page})
-  		if(queryParam.show_data!==undefined) this.setState({show_data:queryParam.show_data})
   		this.props.dispatch(fetchDataSeller(this.state))
   		this.props.dispatch(getStatusSeller())
   		this.setState({count_data:this.props.dataSeller.count_all})
