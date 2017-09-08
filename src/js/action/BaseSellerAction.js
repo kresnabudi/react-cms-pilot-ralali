@@ -5,18 +5,19 @@ export function fetchDataSeller(jembut) {
   console.log(jembut)
   let queryParam = {}
   queryParam.limit = jembut.show_data
-
   queryParam.offset = (jembut.page<=1)?jembut.page-1:(jembut.page*jembut.show_data)-jembut.show_data
   queryParam.sort = 1
+  if(jembut.vendor_status!==undefined) queryParam.vendor_status=jembut.vendor_status
+  else delete queryParam.vendor_status
   console.log(queryString.stringify(queryParam))
   return function(dispatch) {
     dispatch({type: "GET_ALL_SELLER"});
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/list?"+queryString.stringify(queryParam))
       .then((response) => {
-        dispatch({type: "GET_ALL_SELLER_FULFILLED", payload: response.data})
+        dispatch({type: "GET_ALL_SELLER_FULFILLED", payload: response.data, query: queryParam})
       })
       .catch((err) => {
-        dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err})
+        dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err, query: queryParam})
       })
   }
 }

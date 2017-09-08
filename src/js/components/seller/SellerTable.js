@@ -10,6 +10,7 @@ import { fetchDataSeller,getStatusSeller } from "../../action/BaseSellerAction"
 
 @connect((store) => {
   return {
+  	querySeller: store.GetAllSeller.query,
     dataSeller: store.GetAllSeller.data,
     dataStatus: store.GetAllStatusSeller.data
   };
@@ -21,6 +22,7 @@ export default class SellerTable extends React.Component {
 			page: 1,
 			show_data : 10,
 			count_data : 0,
+			vendor_status: undefined,
 			paging: []
 		}
 		AuthorizedComponent.authComponent(this)
@@ -28,6 +30,9 @@ export default class SellerTable extends React.Component {
   	
   	componentWillMount(){
   		let queryParam = queryString.parse(this.props.location.search)
+  		console.log('queryParam',queryParam)
+  		console.log('this.props',this.props)
+  		if(queryParam.status_seller!==undefined) console.log('Calling Filter Status Seller:',queryParam.status_seller)
   		this.props.dispatch(fetchDataSeller(this.state))
   		this.props.dispatch(getStatusSeller())
   		this.setState({count_data:this.props.dataSeller.count_all})
@@ -60,7 +65,10 @@ export default class SellerTable extends React.Component {
 
 	componentWillReceiveProps(nextProps){
 		if (Object.getOwnPropertyNames(nextProps.dataSeller).length > 0){
-			this.setState({count_data:nextProps.dataSeller.count_all},()=>{
+			this.setState({
+				count_data:nextProps.dataSeller.count_all, 
+				vendor_status: nextProps.querySeller.vendor_status
+			},()=>{
 				this.setDefaultPaging(this.state.page, false)
 			})
 		}

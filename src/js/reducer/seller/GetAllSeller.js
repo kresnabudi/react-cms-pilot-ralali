@@ -5,6 +5,7 @@ export default function reducer(state = {
   authorized: false,
   status: 0,
   error: null,
+  query: null
 }, action) {
   switch (action.type) {
     case "GET_ALL_SELLER":
@@ -21,7 +22,8 @@ export default function reducer(state = {
           fetching: false,
           error: action.payload,
           data: action.payload,
-          status: action.status
+          status: action.status,
+          query: action.query
         }
       }
     case "GET_ALL_SELLER_FULFILLED":
@@ -31,7 +33,8 @@ export default function reducer(state = {
           fetching: false,
           fetched: true,
           data: action.payload,
-          status: action.status
+          status: action.status,
+          query: action.query
         }
       }
   }
