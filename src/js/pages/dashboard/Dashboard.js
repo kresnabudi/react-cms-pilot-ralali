@@ -13,7 +13,7 @@ import CountAllSeller		from "../../components/dashboard/CountAllSeller";
 import CountAllCustomer		from "../../components/dashboard/CountAllCustomer";
 import CountAllBrand		from "../../components/dashboard/CountAllBrand";
 
-import DateRangePicker		from "../../components/universal/DateRangePicker";
+import DateRangePickerDashboard		from "../../components/universal/DateRangePickerDashboard";
 
 export default class Dashboard extends React.Component {
   render() {
@@ -22,14 +22,8 @@ export default class Dashboard extends React.Component {
 			<section>
 					<div class="section-body">
 						<div class="row">
-							<div class="col-md-3 col-lg-3">
-							</div>
-							<div class="col-md-3 col-lg-3">
-							</div>
-							<div class="col-md-3 col-lg-3">
-							</div>
-							<div class="col-md-3 col-lg-3">
-								<DateRangePicker />
+							<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8">
+								<DateRangePickerDashboard />
 							</div>
 						</div>
 
@@ -81,7 +75,7 @@ export default class Dashboard extends React.Component {
 							</div>
 
 							<div class="col-md-3">
-								
+
 								<div class="col-md-12 col-sm-12">
 									<CountCurrentSeller location={this.props.location} typecard="curentseller"/>
 								</div>
