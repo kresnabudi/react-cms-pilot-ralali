@@ -30,12 +30,21 @@ export default class SellerTable extends React.Component {
   	
   	componentWillMount(){
   		let queryParam = queryString.parse(this.props.location.search)
-  		console.log('queryParam',queryParam)
-  		console.log('this.props',this.props)
-  		if(queryParam.status_seller!==undefined) console.log('Calling Filter Status Seller:',queryParam.status_seller)
-  		this.props.dispatch(fetchDataSeller(this.state))
-  		this.props.dispatch(getStatusSeller())
-  		this.setState({count_data:this.props.dataSeller.count_all})
+  		let statusSeller=undefined
+  		if(queryParam.status_seller!==undefined){
+  			console.log('Calling Filter Status Seller:',queryParam.status_seller)
+  			if(queryParam.status_seller==='Reject') statusSeller='R'
+  			if(queryParam.status_seller==='Approved') statusSeller='A'
+  			if(queryParam.status_seller==='WaitingForApproval') statusSeller='U,N,P,F'
+  			if(queryParam.status_seller==='All') statusSeller=undefined
+  			this.setState({vendor_status:statusSeller},()=>{
+		  		this.props.dispatch(getStatusSeller())
+		  		this.props.dispatch(fetchDataSeller(this.state))
+  			})	
+  		} else{
+  			this.props.dispatch(getStatusSeller())
+		  	this.props.dispatch(fetchDataSeller(this.state))
+  		}
   	}
 
   	

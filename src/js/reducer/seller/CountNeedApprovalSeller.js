@@ -7,14 +7,14 @@ export default function reducer(state = {
   error: null,
 }, action) {
   switch (action.type) {
-    case "COUNT_CURRENT_SELLER":
+    case "COUNT_NEED_APPROVAL_SELLER":
       {
         return {
           ...state,
           fetching: true
         }
       }
-    case "COUNT_CURRENT_SELLER_REJECTED":
+    case "COUNT_NEED_APPROVAL_SELLER_REJECTED":
       {
         return {
           ...state,
@@ -24,7 +24,7 @@ export default function reducer(state = {
           status: action.status
         }
       }
-    case "COUNT_CURRENT_SELLER_FULFILLED":
+    case "COUNT_NEED_APPROVAL_SELLER_FULFILLED":
       {
         return {
           ...state,

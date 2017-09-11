@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import moment from 'moment'
 
-import { fetchData } from "../../action/countSeller"
+import { getCountSellerByStatus } from "../../action/BaseSellerAction"
 import AuthorizedComponent from "../../util/AuthorizedComponent"
 
 
@@ -23,7 +23,7 @@ export default class CountRejectedSeller extends React.Component {
   	}
 
   	componentDidMount() {
-		this.props.dispatch(fetchData(this.state,'COUNT_REJECTED_SELLER'))
+		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_REJECTED_SELLER'))
 	}
 
   	render() {

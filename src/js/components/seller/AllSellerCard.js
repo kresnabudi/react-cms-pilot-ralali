@@ -5,21 +5,20 @@ import moment from 'moment'
 
 import AuthorizedComponent from "../../util/AuthorizedComponent"
 import Formater from "../../util/Formater"
-import { fetchDataSeller, getCountSellerByStatus } from "../../action/BaseSellerAction"
+import { getCountSellerByStatus, fetchDataSeller } from "../../action/BaseSellerAction"
 
 @connect((store) => {
   return {
-    rejectedSeller: store.CountRejectedSeller.data
+    countAllSeller: store.CountAllSeller.data
   };
 })
-export default class RejectedCard extends React.Component {
+export default class AllSellerCard extends React.Component {
 	constructor() {
 		super()
 		AuthorizedComponent.authComponent(this)
 		this.state={
 			start_date: moment(new Date(0)).format('YYYY-MM-DD'),
 			end_date: moment().endOf('month').format('YYYY-MM-DD'),
-			vendor_status: 'R'
 		}
   	}
 
@@ -28,26 +27,26 @@ export default class RejectedCard extends React.Component {
 			page: 1,
 			show_data : 10,
 			count_data : 0,
-			vendor_status: 'R'
+			vendor_status: undefined
 		}))
   	}
 
   	componentDidMount() {
-		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_REJECTED_SELLER'))
+		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_ALL_SELLER'))
 	}
 
   	render() {
-  		const { rejectedSeller } = this.props;
+  		const { countAllSeller } = this.props;
 	    return (
 	    	<div class="card">
 				<div class="card-body no-padding">
-					<div class="alert alert-callout alert-danger no-margin">
-						<h1 class="pull-right text-danger">
-							<i class="md md-report-problem"></i>
+					<div class="alert alert-callout alert-accent no-margin">
+						<h1 class="pull-right text-accent">
+							<i class="md md-store"></i>
 						</h1>
-						<strong class="text-xl">{Formater.standartNumber(rejectedSeller.count)}</strong><br/>
-						<div class="text-danger">Rejected Seller</div>
-						<NavLink to={"/seller/all?status_seller=Reject"} onClick={this.changePropSeller.bind(this)}>
+						<strong class="text-xl">{Formater.standartNumber(countAllSeller.count)}</strong><br/>
+						<div class="text-accent">All Seller</div>
+						<NavLink to={"/seller/all?status_seller=All"} onClick={this.changePropSeller.bind(this)}>
 							<span class="opacity-50">
 								Show On Table
 							</span>
