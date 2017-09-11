@@ -20,6 +20,7 @@ const Authenticator = {
     this.isAuthenticated = false
     this.access_token = ''
     sessionStorage.setItem('auth-data', JSON.stringify(this))
+    sessionStorage.setItem('auth-component', JSON.stringify({akses_komponen:undefined}))
     setTimeout(cb, 100)
   },
 

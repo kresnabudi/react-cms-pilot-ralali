@@ -26,3 +26,16 @@ export function login(jembut) {
       })
   }
 }
+
+export function getAksesUser(access_token) {
+  return function(dispatch) {
+    dispatch({type: "GET_AKSES_USER"});
+    axios.get("http://localhost:8082/akses.json")
+      .then((response) => {
+        dispatch({type: "GET_AKSES_USER_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "GET_AKSES_USER_REJECTED", payload: err})
+      })
+  }
+}

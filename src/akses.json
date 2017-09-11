@@ -1,0 +1,45 @@
+{
+	"page": [
+		{
+			"name": "Dashboard",
+			"alias": "Dashboard",
+			"path": "/dashboard",
+			"desc": "",
+			"component": [
+				{
+					"name": "ApprovedCard",
+					"alias": "ApprovedCard",
+					"desc": ""
+				}
+			]
+		},
+		{
+			"name": "AllSeller",
+			"alias": "Seller Page",
+			"path": "/seller/all",
+			"desc": "Halaman List Seller",
+			"component": [
+				{
+					"name": "SellerTable",
+					"alias": "",
+					"desc": ""
+				},
+				{
+					"name": "NeedAprovalCard",
+					"alias": "",
+					"desc": ""
+				},
+				{
+					"name": "AverageCompletionCard",
+					"alias": "",
+					"desc": ""
+				},
+				{
+					"name": "ApprovedCard",
+					"alias": "",
+					"desc": ""
+				}
+			]
+		}
+	]
+}

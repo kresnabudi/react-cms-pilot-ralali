@@ -11,13 +11,15 @@ export default class SideBar extends React.Component {
   	}
 
   	render() {
-  		const contentData = this.props.contenRender
+  		// const contentData = this.props.contenRender
+  		const { dataAkses, contenRender } = this.props
+  		// console.log('fufufu',contenRender)
 	    return (
 	      	<div id="base">
 	      		<div class="offcanvas">
 				</div>
 
-				{contentData}
+				{contenRender}
 
 
 				<div id="menubar" class="">

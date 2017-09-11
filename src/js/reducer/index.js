@@ -2,6 +2,7 @@ import { combineReducers } from "redux"
 
 import genericReducer from "./genericReducer"
 import authReducer from "./authReducer"
+import aksesUserReducer from "./aksesUserReducer"
 
 import CountOrder from "./dashboard/CountOrder"
 import CountOrderQty from "./dashboard/CountOrderQty"
@@ -36,5 +37,6 @@ export default combineReducers({
 	CountRejectedSeller,
 	CountTodaySeller,
   	
-  	authReducer
+  	authReducer,
+  	aksesUserReducer
 })

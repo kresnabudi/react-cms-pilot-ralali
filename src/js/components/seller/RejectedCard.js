@@ -9,7 +9,7 @@ import { fetchDataSeller, getCountSellerByStatus } from "../../action/BaseSeller
 
 @connect((store) => {
   return {
-    rejectedSeller: store.CountRejectedSeller.data
+    rejectedSeller: store.CountRejectedSeller.data,
   };
 })
 export default class RejectedCard extends React.Component {
@@ -37,7 +37,7 @@ export default class RejectedCard extends React.Component {
 	}
 
   	render() {
-  		const { rejectedSeller } = this.props;
+  		const { rejectedSeller,getAksesUser } = this.props;
 	    return (
 	    	<div class="card">
 				<div class="card-body no-padding">
