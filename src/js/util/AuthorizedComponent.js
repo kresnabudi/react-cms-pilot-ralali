@@ -3,7 +3,7 @@ import axios from "axios";
 import { getAksesUser } from "../action/authAction"
 
 function initial(){
-  if(sessionStorage.getItem('auth-component')===undefined) {
+  if(sessionStorage.getItem('auth-component')===undefined || sessionStorage.getItem('auth-component')===null) {
     sessionStorage.setItem('auth-component', JSON.stringify({akses_komponen:undefined}))
   }
   return JSON.parse(sessionStorage.getItem('auth-component'))
