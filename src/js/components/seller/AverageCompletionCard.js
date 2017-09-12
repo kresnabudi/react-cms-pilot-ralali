@@ -13,8 +13,8 @@ import { fetchDataSeller, getAverageCompletionSeller } from "../../action/BaseSe
   };
 })
 export default class AverageCompletionCard extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		AuthorizedComponent.authComponent(this)
   	}
 

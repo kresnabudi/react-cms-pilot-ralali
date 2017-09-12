@@ -12,9 +12,9 @@ import AuthorizedComponent from "../../util/AuthorizedComponent"
   };
 })
 export default class CountAllOrderCard extends React.Component {
-	constructor() {
-		super()
-		AuthorizedComponent.authComponent(this)
+	constructor(props) {
+		super(props)
+		AuthorizedComponent.authComponent(this,this.props)
 		this.state={
 			start_date: moment().startOf('month').format('YYYY-MM-DD'),
 			end_date: moment().endOf('month').format('YYYY-MM-DD'),

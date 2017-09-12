@@ -43,16 +43,21 @@ export default class Login extends React.Component {
     	this.setLogin(dataLogin.access_token)
     	console.log(location.origin+'/#/dashboard')
     	if(dataAkses.page!==undefined){
-    		window.location.href = location.origin+'/#/dashboard'
-    		window.location.reload(true)
+    		setTimeout(()=>{ 
+    			window.location.href = location.origin+'/#/dashboard'
+    			window.location.reload(true) 
+    		}, 2000);
+    		
 	    	// return (
 		    // )
 		    //     <Redirect push to='/dashboard'/>
     	}
     }
     if(Authenticator.isAuthenticated && AuthorizedComponent.akses_komponen!==undefined){
-	    window.location.href = location.origin+'/#/dashboard'
-	    window.location.reload(true)
+    	setTimeout(()=>{ 
+			window.location.href = location.origin+'/#/dashboard'
+			window.location.reload(true) 
+		}, 2000);
     	// return (
 	    //     <Redirect push to='/dashboard'/>
 	    // )
