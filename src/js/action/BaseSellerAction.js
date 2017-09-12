@@ -15,9 +15,10 @@ export function fetchDataSeller(jembut) {
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/list?"+queryString.stringify(queryParam))
       .then((response) => {
         dispatch({type: "GET_ALL_SELLER_FULFILLED", payload: response.data, query: queryParam})
+        dispatch({type: "FETCH", name: 'GetAllFulfilled', payload:response, query: queryParam})
       })
       .catch((err) => {
-        dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err, query: queryParam})
+        // dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err, query: queryParam})
       })
   }
 }

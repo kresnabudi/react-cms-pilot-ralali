@@ -2,6 +2,8 @@ import { combineReducers } from "redux"
 
 import genericReducer from "./genericReducer"
 import authReducer from "./authReducer"
+import globalReducer from "./globalReducer.js"
+
 
 import CountOrder from "./dashboard/CountOrder"
 import CountOrderQty from "./dashboard/CountOrderQty"
@@ -36,5 +38,6 @@ export default combineReducers({
 	CountRejectedSeller,
 	CountTodaySeller,
   	
-  	authReducer
+	authReducer,
+	globalReducer
 })
