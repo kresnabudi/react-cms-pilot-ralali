@@ -10,6 +10,11 @@
 					"name": "ApprovedCard",
 					"alias": "ApprovedCard",
 					"desc": ""
+				},
+				{
+					"name": "RejectedCard",
+					"alias": "RejectedCard",
+					"desc": ""
 				}
 			]
 		},
