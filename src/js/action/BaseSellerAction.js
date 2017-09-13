@@ -28,11 +28,12 @@ export function fetchDataSeller(jembut) {
 
 export function getStatusSeller() {
   return function(dispatch) {
+    alert('valled')
     // dispatch({type: "FETCH", name: 'GetAllStatusSeller'})
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/status_list")
       .then((response) => {
         dispatch({type: "GET_ALL_STATUS_SELLER_FULFILLED", payload: response.data, status: response.status})
-        dispatch({type: "FETCH_SUCCESS", name: 'GetAllStatusSeller', payload: response, query: queryParam})
+        dispatch({type: "FETCH_SUCCESS", name: 'GetAllStatusSeller', payload: response, status: response.status})
         
         
         
