@@ -11,40 +11,54 @@ export function fetchDataSeller(jembut) {
   else delete queryParam.vendor_status
   console.log(queryString.stringify(queryParam))
   return function(dispatch) {
-    dispatch({type: "GET_ALL_SELLER"});
+    // dispatch({type: "FETCH", name: 'GetAllSeller'})
+    
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/list?"+queryString.stringify(queryParam))
       .then((response) => {
         dispatch({type: "GET_ALL_SELLER_FULFILLED", payload: response.data, query: queryParam})
-        dispatch({type: "FETCH", name: 'GetAllFulfilled', payload:response, query: queryParam})
+        dispatch({type: "FETCH_SUCCESS", name: 'GetAllSeller', payload: response, query: queryParam})
       })
       .catch((err) => {
-        // dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err, query: queryParam})
+        dispatch({type: "GET_ALL_SELLER_REJECTED", payload: err, query: queryParam})
+        // dispatch({type: "FETCH_ERROR", name: 'GetAllSeller', payload:err, query: queryParam})
+        
       })
   }
 }
 
 export function getStatusSeller() {
   return function(dispatch) {
-    dispatch({type: "GET_ALL_STATUS_SELLER"});
+    // dispatch({type: "FETCH", name: 'GetAllStatusSeller'})
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/status_list")
       .then((response) => {
         dispatch({type: "GET_ALL_STATUS_SELLER_FULFILLED", payload: response.data, status: response.status})
+        dispatch({type: "FETCH_SUCCESS", name: 'GetAllStatusSeller', payload: response, query: queryParam})
+        
+        
+        
       })
       .catch((err) => {
-        dispatch({type: "GET_ALL_STATUS_SELLER_REJECTED", payload: err, status: response.status})
+        // dispatch({type: "GET_ALL_STATUS_SELLER_REJECTED", payload: err, status: response.status})
+        // dispatch({type: "FETCH", name: 'GetAllStatusSeller', payload:response, query: queryParam})
+        
       })
   }
 }
 
 export function getAverageCompletionSeller() {
   return function(dispatch) {
-    dispatch({type: "GET_AVERAGE_COMPLETION_SELLER"});
+    // dispatch({type: "GET_AVERAGE_COMPLETION_SELLER"});
+    dispatch({type: "FETCH", name: 'CountAverageCompletionSeller'})
+    
     axios.get("https://dev.ralali.com:1025/api/v1/vendor/average-completion")
       .then((response) => {
         dispatch({type: "GET_AVERAGE_COMPLETION_SELLER_FULFILLED", payload: response.data, status: response.status})
+        dispatch({type: "FETCH_SUCCESS", name: 'CountAverageCompletionSeller', payload: response, status: response.status})
+        
+        
       })
       .catch((err) => {
-        dispatch({type: "GET_AVERAGE_COMPLETION_SELLER_REJECTED", payload: err, status: response.status})
+        // dispatch({type: "GET_AVERAGE_COMPLETION_SELLER_REJECTED", payload: err, status: response.status})
       })
   }
 }
@@ -59,7 +73,7 @@ export function getCountSellerByStatus(payload,identifier) {
         dispatch({type: identifier+"_FULFILLED", payload: response.data, status: response.status})
       })
       .catch((err) => {
-        dispatch({type: identifier+"_REJECTED", payload: err, status: response.status})
+        // dispatch({type: identifier+"_REJECTED", payload: err, status: response.status})
       })
   }
 }
