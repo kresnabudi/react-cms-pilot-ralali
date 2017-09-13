@@ -9,7 +9,7 @@ import { getCountSellerByStatus, fetchDataSeller } from "../../action/BaseSeller
 
 @connect((store) => {
   return {
-    countAllSeller: store.CountAllSeller.data
+    countAllSeller: store.globalReducer.CountAllSeller.data
   };
 })
 export default class AllSellerCard extends React.Component {
@@ -32,7 +32,7 @@ export default class AllSellerCard extends React.Component {
   	}
 
   	componentDidMount() {
-		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_ALL_SELLER'))
+		this.props.dispatch(getCountSellerByStatus(this.state,'CountAllSeller'))
 	}
 
   	render() {

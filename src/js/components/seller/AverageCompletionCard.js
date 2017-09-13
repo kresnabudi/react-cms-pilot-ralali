@@ -9,7 +9,7 @@ import { fetchDataSeller, getAverageCompletionSeller } from "../../action/BaseSe
 
 @connect((store) => {
   return {
-    averageComp: store.CountAverageCompletionSeller.data
+    averageComp: store.globalReducer.CountAverageCompletionSeller.data
   };
 })
 export default class AverageCompletionCard extends React.Component {
