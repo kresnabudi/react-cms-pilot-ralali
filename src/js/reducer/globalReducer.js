@@ -32,14 +32,14 @@ function initState(){
 const reducer = (state = initState(), action) => {
     switch (action.type) {
         case 'FETCH':
-            return Object.assign({}, state, {
+            return { ...state,
                 [action.name] : {
                     fetching: true,
                 }
-            })
+            }
             break;
         case 'FETCH_SUCCESS':
-            return Object.assign({}, state, {
+            return { ...state,
                 [action.name] : {
                     status: action.response ? action.response.status : null,
                     fetching: false,
@@ -47,10 +47,10 @@ const reducer = (state = initState(), action) => {
                     data: action.payload.data,
                     query: action.query
                 }
-            })
+            }
             break;
         case 'FETCH_REJECTED':
-        return Object.assign({}, state, {
+        return { ...state,
             [action.name] : {
                 fetching: false,
                 error: action.payload,
@@ -58,7 +58,7 @@ const reducer = (state = initState(), action) => {
                 status: action.status,
                 query: action.query
             }
-        })
+        }
         break;
     
         default:
