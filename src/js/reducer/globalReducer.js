@@ -3,12 +3,7 @@ import Immutable from 'immutable'
 const names = [
     {name: 'GetAllSeller', data : {}},
     {name: 'GetAllStatusSeller', data:[]},
-    {name: 'CountAverageCompletionSeller', data:{}},
-    {name: 'CountNeedApprovalSeller', data:{}},
-    {name: 'CountApprovedSeller', data:{}},
-    {name: 'CountAllSeller', data:{}},
-    {name: 'CountRejectedSeller', data:{}},
-    
+    {name: 'CountAverageCompletionSeller', data:{}}
 ]
 
 function initState(){
@@ -41,7 +36,6 @@ const reducer = (state = initState(), action) => {
         case 'FETCH_SUCCESS':
             return Object.assign({}, state, {
                 [action.name] : {
-                    status: action.response ? action.response.status : null,
                     fetching: false,
                     fetched: true,
                     data: action.payload.data,
@@ -49,17 +43,6 @@ const reducer = (state = initState(), action) => {
                 }
             })
             break;
-        case 'FETCH_REJECTED':
-        return Object.assign({}, state, {
-            [action.name] : {
-                fetching: false,
-                error: action.payload,
-                data: action.payload,
-                status: action.status,
-                query: action.query
-            }
-        })
-        break;
     
         default:
         return state
