@@ -9,7 +9,11 @@ import { fetchDataSeller, getCountSellerByStatus } from "../../action/BaseSeller
 
 @connect((store) => {
   return {
+<<<<<<< HEAD
+    rejectedSeller: store.globalReducer.CountRejectedSeller.data
+=======
     rejectedSeller: store.CountRejectedSeller.data,
+>>>>>>> 78eb06d56865184920ad935657604f51d4b3e1de
   };
 })
 export default class RejectedCard extends React.Component {
@@ -33,7 +37,7 @@ export default class RejectedCard extends React.Component {
   	}
 
   	componentDidMount() {
-		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_REJECTED_SELLER'))
+		this.props.dispatch(getCountSellerByStatus(this.state,'CountRejectedSeller'))
 	}
 
   	render() {

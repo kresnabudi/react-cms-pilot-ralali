@@ -10,9 +10,9 @@ import { fetchDataSeller,getStatusSeller } from "../../action/BaseSellerAction"
 
 @connect((store) => {
   return {
-  	querySeller: store.GetAllSeller.query,
-    dataSeller: store.GetAllSeller.data,
-    dataStatus: store.GetAllStatusSeller.data
+	querySeller: store.globalReducer.GetAllSeller.query,
+	dataSeller: store.globalReducer.GetAllSeller.data,
+	dataStatus: store.globalReducer.GetAllStatusSeller.data
   };
 })
 export default class SellerTable extends React.Component {
@@ -29,6 +29,7 @@ export default class SellerTable extends React.Component {
   	}
   	
   	componentWillMount(){
+	
   		let queryParam = queryString.parse(this.props.location.search)
   		let statusSeller=undefined
   		if(queryParam.status_seller!==undefined){
@@ -225,5 +226,3 @@ export default class SellerTable extends React.Component {
 	  	
   	}
 }
-
-

@@ -1,8 +1,12 @@
 import { combineReducers } from "redux"
 
-import genericReducer from "./genericReducer"
 import authReducer from "./authReducer"
+<<<<<<< HEAD
+import globalReducer from "./globalReducer.js"
+
+=======
 import aksesUserReducer from "./aksesUserReducer"
+>>>>>>> 78eb06d56865184920ad935657604f51d4b3e1de
 
 import CountOrder from "./dashboard/CountOrder"
 import CountOrderQty from "./dashboard/CountOrderQty"
@@ -10,15 +14,6 @@ import CountOrderNetWorth from "./dashboard/CountOrderNetWorth"
 import CountAllItem from "./dashboard/CountAllItem"
 import CountAllCustomer from "./dashboard/CountAllCustomer"
 import CountAllBrand from "./dashboard/CountAllBrand"
-
-import GetAllSeller from "./seller/GetAllSeller"
-import GetAllStatusSeller from "./seller/GetAllStatusSeller"
-import CountAllSeller from "./seller/CountAllSeller"
-import CountApprovedSeller from "./seller/CountApprovedSeller"
-import CountAverageCompletionSeller from "./seller/CountAverageCompletionSeller"
-import CountNeedApprovalSeller from "./seller/CountNeedApprovalSeller"
-import CountRejectedSeller from "./seller/CountRejectedSeller"
-import CountTodaySeller from "./seller/CountTodaySeller"
 
 export default combineReducers({
 	CountOrder,
@@ -28,6 +23,10 @@ export default combineReducers({
 	CountAllCustomer,
 	CountAllBrand,
   	
+<<<<<<< HEAD
+	authReducer,
+	globalReducer
+=======
   	GetAllSeller,
   	GetAllStatusSeller,
 	CountAllSeller,
@@ -39,4 +38,5 @@ export default combineReducers({
   	
   	authReducer,
   	aksesUserReducer
+>>>>>>> 78eb06d56865184920ad935657604f51d4b3e1de
 })

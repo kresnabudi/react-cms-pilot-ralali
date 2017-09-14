@@ -9,7 +9,7 @@ import { fetchDataSeller, getCountSellerByStatus } from "../../action/BaseSeller
 
 @connect((store) => {
   return {
-    needAprovalSeller: store.CountNeedApprovalSeller.data
+    needAprovalSeller: store.globalReducer.CountNeedApprovalSeller.data
   };
 })
 export default class NeedAprovalCard extends React.Component {
@@ -33,7 +33,7 @@ export default class NeedAprovalCard extends React.Component {
   	}
 
   	componentDidMount() {
-		this.props.dispatch(getCountSellerByStatus(this.state,'COUNT_NEED_APPROVAL_SELLER'))
+		this.props.dispatch(getCountSellerByStatus(this.state,'CountNeedApprovalSeller'))
 	}
 
   	render() {

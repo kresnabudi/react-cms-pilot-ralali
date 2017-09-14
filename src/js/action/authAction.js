@@ -22,6 +22,7 @@ export function login(jembut) {
         dispatch({type: "SEND_AUTH_DATA_FULFILLED", payload: response.data})
       })
       .catch((err) => {
+        console.log(err)
         dispatch({type: "SEND_AUTH_DATA_REJECTED", payload: err})
       })
   }
