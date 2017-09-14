@@ -29,7 +29,6 @@ export default class CountAllOrderCard extends React.Component {
 
   	render() {
   		const { countData } = this.props;
-  		console.log(countData)
 	    return (
 			<div class="card">
 				<div class="card-body no-padding">

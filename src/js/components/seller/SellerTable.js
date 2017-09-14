@@ -10,7 +10,6 @@ import { fetchDataSeller,getStatusSeller } from "../../action/BaseSellerAction"
 
 @connect((store) => {
   return {
-	seller: store.globalReducer,
 	querySeller: store.globalReducer.GetAllSeller.query,
 	dataSeller: store.globalReducer.GetAllSeller.data,
 	dataStatus: store.globalReducer.GetAllStatusSeller.data
@@ -75,7 +74,6 @@ export default class SellerTable extends React.Component {
   	}
 
 	componentWillReceiveProps(nextProps){
-		console.log("DATASELLER", nextProps)
 		if (Object.getOwnPropertyNames(nextProps.dataSeller).length > 0){
 			this.setState({
 				count_data:nextProps.dataSeller.count_all, 
@@ -87,10 +85,6 @@ export default class SellerTable extends React.Component {
 	}
 
   	render() {
-		
-		//   console.log(this.props.seller.GetAllSeller.data)
-		// const dataSeller = this.props.seller.GetAllSeller.data
-		// dataStatus = this.props.seller.dataStatus
   		const {dataSeller, dataStatus} = this.props
 	  	const mapStatus=dataStatus.reduce((obj, item) => {
 			obj[item.vendor_status] = item
@@ -232,15 +226,3 @@ export default class SellerTable extends React.Component {
 	  	
   	}
 }
-
-// function mapStateToProps(state) {
-// 	return {
-// 		seller: state.globalReducer,
-// 		querySeller: state.globalReducer.GetAllSeller.query,
-// 		dataSeller: state.globalReducer.GetAllSeller.data,
-// 		dataStatus: state.GetAllStatusSeller.data
-// 	};
-//   }
-//   export default connect(mapStateToProps)(SellerTable);
-  
-

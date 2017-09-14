@@ -1,9 +1,13 @@
-import Immutable from 'immutable'
 
 const names = [
     {name: 'GetAllSeller', data : {}},
     {name: 'GetAllStatusSeller', data:[]},
-    {name: 'CountAverageCompletionSeller', data:{}}
+    {name: 'CountAverageCompletionSeller', data:{}},
+    {name: 'CountNeedApprovalSeller', data:{}},
+    {name: 'CountApprovedSeller', data:{}},
+    {name: 'CountAllSeller', data:{}},
+    {name: 'CountRejectedSeller', data:{}},
+    
 ]
 
 function initState(){
@@ -11,7 +15,6 @@ function initState(){
     names.map((value,index)=> {
         state[value.name] = {
             data: value.data,
-            
             fetching: false,
             fetched: false,
             authorized: false,
@@ -20,34 +23,37 @@ function initState(){
             query: null
         }
     })
-
     return state
 }
 
-const reducer = (state = initState(), action) => {
+export default function reducer(state = initState(), action){
+
     switch (action.type) {
-        case 'FETCH':
-            return Object.assign({}, state, {
-                [action.name] : {
+        case 'ACTION_CALL': {
+            return {...state, [action.name] : {
                     fetching: true,
                 }
-            })
-            break;
-        case 'FETCH_SUCCESS':
-            return Object.assign({}, state, {
-                [action.name] : {
+            }
+        }
+        case 'ACTION_CALL_FULFILLED': {
+            return {...state, [action.name] : {
                     fetching: false,
                     fetched: true,
                     data: action.payload.data,
                     query: action.query
                 }
-            })
-            break;
-    
-        default:
-        return state
-            break;
+            }
+        }
+        case 'ACTION_CALL_REJECTED': {
+            return {...state, [action.name] : {
+                    fetching: false,
+                    error: action.payload,
+                    data: action.payload,
+                    status: action.status,
+                    query: action.query
+                }
+            }
+        }
     }
-  }
-
-export default reducer
+    return state
+}
