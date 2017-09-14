@@ -16,8 +16,8 @@ import { fetchDataSeller,getStatusSeller } from "../../action/BaseSellerAction"
   };
 })
 export default class SellerTable extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			page: 1,
 			show_data : 10,

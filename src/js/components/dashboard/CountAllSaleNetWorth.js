@@ -12,8 +12,8 @@ import Formater from "../../util/Formater"
   };
 })
 export default class CountAllOrderCard extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		AuthorizedComponent.authComponent(this)
 		this.state={
 			start_date: moment().startOf('month').format('YYYY-MM-DD'),

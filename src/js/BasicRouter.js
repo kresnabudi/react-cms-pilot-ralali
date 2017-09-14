@@ -24,30 +24,73 @@ import NotFound				from "./pages/NotFound";
 import Login				from "./pages/Login";
 import Logout				from "./pages/Logout";
 
+import AuthorizedComponent from "./util/AuthorizedComponent"
+
 
 export default class BasicRouter extends React.Component {
+	getComponent(componentName){
+		switch(componentName) {
+		    case 'Dashboard':
+		        return Dashboard
+		        break;
+		    case 'AllSeller':
+		        return AllSeller
+		        break;
+		    case 'SuperSeller':
+		        return SuperSeller
+		        break;
+		    case 'Buyer':
+		        return Buyer
+		        break;
+		    case 'AllOrder':
+		        return AllOrder
+		        break;
+		    case 'Settlement':
+		        return Settlement
+		        break;
+		    case 'SettlementLog':
+		        return SettlementLog
+		        break;
+		    case 'OfflineOrder':
+		        return OfflineOrder
+		        break;
+		    case 'UploadOfflineOrder':
+		        return UploadOfflineOrder
+		        break;
+
+		}
+	}
 	render() {
-		// console.log('jembat',React)
-	  	return (
-		    <Router>
-  				<Layout >
-					<Switch>
-						<Route exact path='/login' 					component={Login}/>
-						<Route exact path='/logout' 				component={Logout}/>
-						<PrivateRoute exact path='/' 				component={Dashboard}/>
-						<PrivateRoute path='/dashboard' 			component={Dashboard}/>
-						<PrivateRoute path='/seller/all' 			component={AllSeller}/>
-						<PrivateRoute path='/seller/super' 			component={SuperSeller}/>
-						<PrivateRoute path='/buyer' 				component={Buyer}/>
-						<PrivateRoute path='/order/all' 			component={AllOrder}/>
-						<PrivateRoute path='/order/settlement' 		component={Settlement}/>
-						<PrivateRoute path='/order/settlementlog' 	component={SettlementLog}/>
-						<PrivateRoute path='/offline-order/all' 	component={OfflineOrder}/>
-						<PrivateRoute path='/offline-order/upload' 	component={UploadOfflineOrder}/>
-						<PrivateRoute component={NotFound}/>
-					</Switch>
-	    		</Layout >
-		    </Router>
-	  	);
+		let i=1
+		if(AuthorizedComponent.akses_komponen!==undefined){
+			const pagingRoute = AuthorizedComponent.akses_komponen.page.map(routeDetail => 
+				<PrivateRoute key={i++} path={routeDetail.path} component={this.getComponent(routeDetail.name)}/>
+		  	)
+		  	return (
+			    <Router>
+	  				<Layout >
+						<Switch>
+							<Route exact path='/login' 					component={Login}/>
+							<Route exact path='/logout' 				component={Logout}/>
+							{pagingRoute}
+							<PrivateRoute component={NotFound}/>
+						</Switch>
+		    		</Layout >
+			    </Router>
+		  	);	
+		}else{
+			return (
+			    <Router>
+	  				<Layout >
+						<Switch>
+							<Route exact path='/login' 					component={Login}/>
+							<Route exact path='/logout' 				component={Logout}/>
+							<PrivateRoute component={NotFound}/>
+						</Switch>
+		    		</Layout >
+			    </Router>
+		  	);
+		}
+		
   	}
 };

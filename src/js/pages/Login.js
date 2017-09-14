@@ -4,51 +4,63 @@ import {
 } from 'react-router-dom'
 import { connect } from "react-redux"
 
-import { login } from "../action/authAction"
+import { login, getAksesUser } from "../action/authAction"
 import Authenticator from "../util/Authenticator"
+import AuthorizedComponent from "../util/AuthorizedComponent"
 
 @connect((store) => {
   return {
-    dataLogin: store.authReducer
+    dataLogin: store.authReducer.data,
+    dataAkses: store.aksesUserReducer.data
   };
 })
 export default class Login extends React.Component {
-  state = {
-    redirectToReferrer: false
-  }
 
-  login = (event) => {
-  	event.preventDefault()
-  	const data = new FormData(event.target);
-  	let postData={}
-  	for (const key of data.keys()) {
-  		postData[key]=data.get(key)
+	login = (event) => {
+		event.preventDefault()
+		const data = new FormData(event.target);
+		let postData={}
+		for (const key of data.keys()) {
+			postData[key]=data.get(key)
+		}
+		this.props.dispatch(login(postData))
 	}
-	this.props.dispatch(login(postData))
-  }
 
-  setLogin = (access_token) => {
-  	Authenticator.authenticate(access_token)
-  }
+	setLogin = (access_token) => {
+		Authenticator.authenticate(access_token)
+		this.props.dispatch(getAksesUser(access_token))
+	}
 
+  	componentWillReceiveProps(nextProps){
+		if (Object.getOwnPropertyNames(nextProps.dataAkses).length > 0){
+			AuthorizedComponent.setAuthComponent(nextProps.dataAkses)
+		}
+	}
 
   render() {
-    if(this.props.dataLogin.data.access_token!==undefined){
-    	let jancok = this.props.dataLogin.data.access_token
-    	this.setLogin(jancok)
+  	const {dataLogin,dataAkses} = this.props
+    if(dataLogin.access_token!==undefined){
+    	this.setLogin(dataLogin.access_token)
     	console.log(location.origin+'/#/dashboard')
-    	window.location.href = location.origin+'/#/dashboard'
-    	window.location.reload(true)
-    	// return (
-	    //     <Redirect push to='/dashboard'/>
-	    // )
+    	if(dataAkses.page!==undefined){
+    		setTimeout(()=>{ 
+    			window.location.href = location.origin+'/#/dashboard'
+    			window.location.reload(true) 
+    		}, 2000);
+    		
+	    	// return (
+		    // )
+		    //     <Redirect push to='/dashboard'/>
+    	}
     }
-    if(Authenticator.isAuthenticated){
+    if(Authenticator.isAuthenticated && AuthorizedComponent.akses_komponen!==undefined){
+    	setTimeout(()=>{ 
+			window.location.href = location.origin+'/#/dashboard'
+			window.location.reload(true) 
+		}, 2000);
     	// return (
 	    //     <Redirect push to='/dashboard'/>
 	    // )
-	    window.location.href = location.origin+'/#/dashboard'
-	    window.location.reload(true)
     }
 
     return (

@@ -10,20 +10,29 @@ export default class SideBar extends React.Component {
 		}
   	}
 
+
+  	componentWillMount(){
+  		const { dataAkses } = this.props
+  		const linknya = document.getElementsByClassName("linkmenu")
+  		
+  		console.log('linknya.SideBar',linknya)
+  		console.log('componentWillMount.SideBar',dataAkses)
+  	}
   	render() {
-  		const contentData = this.props.contenRender
+  		// const contentData = this.props.contenRender
+  		const { contenRender } = this.props
 	    return (
 	      	<div id="base">
 	      		<div class="offcanvas">
 				</div>
 
-				{contentData}
+				{contenRender}
 
 
 				<div id="menubar" class="">
 					<div class="menubar-scroll-panel">
 						<ul id="main-menu" class="gui-controls">
-							<li>
+							<li class="linkmenu">
 								<NavLink to="dashboard">
 									<div class="gui-icon"><i class="md md-dashboard"></i></div>
 									<span class="title">Dashboard</span>
@@ -35,12 +44,12 @@ export default class SideBar extends React.Component {
 									<span class="title">Seller</span>
 								</a>
 								<ul>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="seller/all">
 											<span class="title">All Seller</span>
 										</NavLink>
 									</li>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="seller/super">
 											<span class="title">Super Seller</span>
 										</NavLink>
@@ -59,17 +68,17 @@ export default class SideBar extends React.Component {
 									<span class="title">All Order</span>
 								</a>
 								<ul>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="order/all">
 											<span class="title">All Order</span>
 										</NavLink>
 									</li>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="order/settlement">
 											<span class="title">Settlement</span>
 										</NavLink>
 									</li>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="order/settlementlog">
 											<span class="title">Settlement Log</span>
 										</NavLink>
@@ -82,12 +91,12 @@ export default class SideBar extends React.Component {
 									<span class="title">Offline Order</span>
 								</a>
 								<ul>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="offline-order/all">
 											<span class="title">Data</span>
 										</NavLink>
 									</li>
-									<li>
+									<li class="linkmenu">
 										<NavLink to="offline-order/upload">
 											<span class="title">Upload Excel</span>
 										</NavLink>

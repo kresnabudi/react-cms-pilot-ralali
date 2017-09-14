@@ -13,8 +13,8 @@ import Formater from "../../util/Formater"
   };
 })
 export default class CountAllCustomer extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		AuthorizedComponent.authComponent(this)
 		this.state={
 			start_date: moment(new Date(0)).format('YYYY-MM-DD'),

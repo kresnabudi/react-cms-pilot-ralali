@@ -9,12 +9,16 @@ import { fetchDataSeller, getCountSellerByStatus } from "../../action/BaseSeller
 
 @connect((store) => {
   return {
+<<<<<<< HEAD
     rejectedSeller: store.globalReducer.CountRejectedSeller.data
+=======
+    rejectedSeller: store.CountRejectedSeller.data,
+>>>>>>> 78eb06d56865184920ad935657604f51d4b3e1de
   };
 })
 export default class RejectedCard extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		AuthorizedComponent.authComponent(this)
 		this.state={
 			start_date: moment(new Date(0)).format('YYYY-MM-DD'),
@@ -37,7 +41,7 @@ export default class RejectedCard extends React.Component {
 	}
 
   	render() {
-  		const { rejectedSeller } = this.props;
+  		const { rejectedSeller,getAksesUser } = this.props;
 	    return (
 	    	<div class="card">
 				<div class="card-body no-padding">

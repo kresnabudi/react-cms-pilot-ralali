@@ -14,8 +14,8 @@ import { getCountSellerByStatus, fetchDataSeller } from "../../action/BaseSeller
   };
 })
 export default class ApprovedCard extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		AuthorizedComponent.authComponent(this)
 		this.state={
 			start_date: moment(new Date(0)).format('YYYY-MM-DD'),

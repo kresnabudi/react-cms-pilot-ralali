@@ -1,8 +1,9 @@
 node_modules
 .DS_Store
 .vscode
-Themeforest-Material-Admin-Bootstrap-Admin-HTML5-App
-
 # IntelliJ
 *.iml
 /.idea
+.env
+.idea
+*~
