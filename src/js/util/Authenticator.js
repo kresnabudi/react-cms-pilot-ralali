@@ -19,8 +19,7 @@ const Authenticator = {
   signout(cb) {
     this.isAuthenticated = false
     this.access_token = ''
-    sessionStorage.setItem('auth-data', JSON.stringify(this))
-    sessionStorage.setItem('auth-component', JSON.stringify({ akses_komponen : { page : [] } }))
+    sessionStorage.clear()
     setTimeout(cb, 100)
   },
 

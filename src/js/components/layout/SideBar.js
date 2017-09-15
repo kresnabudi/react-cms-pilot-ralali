@@ -16,7 +16,7 @@ export default class SideBar extends React.Component {
   		const linknya = document.getElementsByClassName("linkmenu")
   		
   		console.log('linknya.SideBar',linknya)
-  		console.log('componentWillMount.SideBar',dataAkses)
+  		console.log('componentWillMount.SideBar',this.props)
   	}
   	render() {
   		// const contentData = this.props.contenRender

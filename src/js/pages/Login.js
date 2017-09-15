@@ -26,33 +26,20 @@ export default class Login extends React.Component {
 		this.props.dispatch(login(postData))
 	}
 
-	setLogin = (access_token) => {
-		Authenticator.authenticate(access_token)
-		this.props.dispatch(getAksesUser(access_token))
-	}
-
   	componentWillReceiveProps(nextProps){
-		if (Object.getOwnPropertyNames(nextProps.dataAkses).length > 0){
-			AuthorizedComponent.setAuthComponent(nextProps.dataAkses)
-		}
+  		if(nextProps.dataLogin!=={} && Object.keys(nextProps.dataAkses).length === 0){
+  			Authenticator.authenticate(nextProps.dataLogin.access_token)
+  			this.props.dispatch(getAksesUser(nextProps.dataLogin.access_token))
+  		}if(nextProps.dataLogin!=={} && Object.keys(nextProps.dataAkses).length >= 0){
+  			AuthorizedComponent.setAuthComponent(nextProps.dataAkses)
+  		}
 	}
 
   render() {
   	const {dataLogin,dataAkses} = this.props
-    if(dataLogin.access_token!==undefined){
-    	this.setLogin(dataLogin.access_token)
-    	console.log(location.origin+'/#/dashboard')
-    	if(dataAkses.page!==undefined){
-    		setTimeout(()=>{ 
-    			window.location.href = location.origin+'/#/dashboard'
-    			window.location.reload(true) 
-    		}, 2000);
-    		
-	    	// return (
-		    // )
-		    //     <Redirect push to='/dashboard'/>
-    	}
-    }
+
+  	console.log('Authenticator.isAuthenticated',Authenticator.isAuthenticated)
+  	console.log('AuthorizedComponent.akses_komponen',AuthorizedComponent.akses_komponen)
     if(Authenticator.isAuthenticated && AuthorizedComponent.akses_komponen!==undefined){
     	setTimeout(()=>{ 
 			window.location.href = location.origin+'/#/dashboard'

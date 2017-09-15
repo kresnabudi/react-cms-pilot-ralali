@@ -63,7 +63,7 @@ export default class BasicRouter extends React.Component {
 	render() {
 		let i=1
 		if(AuthorizedComponent.akses_komponen!==undefined){
-			const pagingRoute = AuthorizedComponent.akses_komponen.page.map(routeDetail => 
+			const pagingRoute = AuthorizedComponent.akses_komponen_before_reduce.page.map(routeDetail => 
 				<PrivateRoute key={i++} path={routeDetail.path} component={this.getComponent(routeDetail.name)}/>
 		  	)
 		  	return (
